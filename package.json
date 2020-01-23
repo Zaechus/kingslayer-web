@@ -1,0 +1,13 @@
+{
+    "name": "kingslayer-web",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "author": "Maxwell Anderson",
+    "license": "MIT",
+    "dependencies": {
+        "kingslayer-wasm": "file:./kingslayer-wasm/pkg",
+        "webpack": "^4.41.5",
+        "webpack-cli": "^3.3.10"
+    }
+}
