@@ -1,4 +1,3 @@
 # kingslayer-web
 
-(BROKEN til WASM has threads, rayon considers handling WASM target, or I fix it myself :P)
-An actix-web server to host Kingslayer.
+This is an actix-web server and a GitHub Pages location for the Kingslayer game to be played online.
