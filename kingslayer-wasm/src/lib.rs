@@ -8,6 +8,7 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
 extern "C" {
+    pub fn alert(s: &str) -> String;
     pub fn prompt(s: &str) -> String;
 }
 
@@ -26,6 +27,7 @@ pub fn start(json: &str) {
     loop {
         res = cli.ask(&prompt(&res));
         if res.contains("You died.") {
+            alert(&res);
             break;
         }
     }
