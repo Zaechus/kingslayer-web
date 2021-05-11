@@ -19,7 +19,7 @@ async fn public(req: HttpRequest) -> Result<NamedFile> {
     }
 }
 
-#[actix_rt::main]
+#[actix_web::main]
 async fn main() -> std::io::Result<()> {
     println!("The server has been started!: http://0.0.0.0:7878\n");
 
@@ -29,7 +29,7 @@ async fn main() -> std::io::Result<()> {
             .route("/favicon.ico", web::get().to(favicon))
             .route("/{filename:.*}", web::get().to(public))
     })
-    .bind("0.0.0.0:7878")?
+    .bind(("0.0.0.0", 7878))?
     .run()
     .await
 }

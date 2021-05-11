@@ -5,6 +5,5 @@ authors = ["Maxwell Anderson <maxwell.brayden.anderson@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-actix-web = "3.1"
-actix-rt = "1.1"
-actix-files = "0.4"
+actix-web = "3"
+actix-files = "0.5"
