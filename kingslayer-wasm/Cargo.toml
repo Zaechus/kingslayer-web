@@ -13,6 +13,7 @@ default = ["console_error_panic_hook"]
 
 [dependencies]
 kingslayer = { path = "../../kingslayer" }
+serde-wasm-bindgen = "0.2"
 wasm-bindgen = "0.2"
 
 console_error_panic_hook = { version = "0.1", optional = true }

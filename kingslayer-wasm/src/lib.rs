@@ -9,7 +9,6 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 #[wasm_bindgen]
 extern "C" {
     pub fn alert(s: &str) -> String;
-    pub fn prompt(s: &str) -> String;
 }
 
 pub fn set_panic_hook() {
@@ -18,7 +17,7 @@ pub fn set_panic_hook() {
 }
 
 #[wasm_bindgen]
-pub fn start() {
+pub fn start() -> JsValue {
     set_panic_hook();
 
     let cli = Cli::from_ron_str(
@@ -27,12 +26,21 @@ pub fn start() {
     "#,
     );
 
-    let mut res = cli.ask("l");
-    loop {
-        res = cli.ask(&prompt(&res));
-        if res.contains("You died.") || res.contains("Farewell.") {
-            alert(&res);
-            break;
-        }
-    }
+    serde_wasm_bindgen::to_value(&cli).unwrap()
+}
+
+#[wasm_bindgen]
+pub fn ask(value: JsValue, prompt: &str) -> String {
+    let cli: Cli = serde_wasm_bindgen::from_value(value).unwrap();
+
+    cli.ask(prompt)
+}
+
+#[wasm_bindgen]
+pub fn update(value: JsValue, prompt: &str) -> JsValue {
+    let cli: Cli = serde_wasm_bindgen::from_value(value).unwrap();
+
+    cli.ask(prompt);
+
+    serde_wasm_bindgen::to_value(&cli).unwrap()
 }
