@@ -29,18 +29,19 @@ pub fn start() -> JsValue {
     serde_wasm_bindgen::to_value(&cli).unwrap()
 }
 
-#[wasm_bindgen]
-pub fn ask(value: JsValue, prompt: &str) -> String {
-    let cli: Cli = serde_wasm_bindgen::from_value(value).unwrap();
-
-    cli.ask(prompt)
-}
 
 #[wasm_bindgen]
-pub fn update(value: JsValue, prompt: &str) -> JsValue {
+pub fn ask(value: JsValue, prompt: &str) -> JsValue {
     let cli: Cli = serde_wasm_bindgen::from_value(value).unwrap();
 
     cli.ask(prompt);
 
     serde_wasm_bindgen::to_value(&cli).unwrap()
+}
+
+#[wasm_bindgen]
+pub fn output(value: JsValue) -> String {
+    let cli: Cli = serde_wasm_bindgen::from_value(value).unwrap();
+
+    cli.last_output()
 }

@@ -1,4 +1,4 @@
-import { start, ask, update } from "kingslayer-wasm";
+import { start, ask, output } from "kingslayer-wasm";
 
 let cli = start();
 
@@ -8,8 +8,8 @@ let terminal = document.getElementById("terminal");
 term_input.focus();
 
 function show_res(command) {
-    terminal.append(ask(cli, command) + "\n\n\n");
-    cli = update(cli, command);
+    cli = ask(cli, command);
+    terminal.append(output(cli) + "\n\n\n");
 
     terminal.scrollTop = terminal.scrollHeight - terminal.clientHeight;
 
