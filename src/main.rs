@@ -1,35 +1,26 @@
-use actix_files::NamedFile;
-use actix_web::{web, App, HttpRequest, HttpServer, Result};
-use std::path::PathBuf;
+use axum::{
+    http::StatusCode,
+    response::{Html, IntoResponse},
+    routing::{get, get_service},
+    Router,
+};
+use tower_http::services::ServeDir;
 
-async fn index() -> Result<NamedFile> {
-    Ok(NamedFile::open(PathBuf::from("public/index.html"))?)
+#[tokio::main]
+async fn main() {
+    let serve_dir = get_service(ServeDir::new("docs")).handle_error(handle_error);
+    let app = Router::new().route("/", get(index)).fallback(serve_dir);
+
+    axum::Server::bind(&"0.0.0.0:7878".parse().unwrap())
+        .serve(app.into_make_service())
+        .await
+        .unwrap();
 }
 
-async fn favicon() -> Result<NamedFile> {
-    Ok(NamedFile::open(PathBuf::from("public/static/favicon.ico"))?)
+async fn index() -> Html<&'static str> {
+    Html(include_str!("../docs/index.html"))
 }
 
-async fn public(req: HttpRequest) -> Result<NamedFile> {
-    let file: PathBuf = req.match_info().query("filename").parse().unwrap();
-    if let Ok(res) = NamedFile::open(PathBuf::from("dist/").join(file.clone())) {
-        Ok(res)
-    } else {
-        Ok(NamedFile::open(PathBuf::from("public/").join(file))?)
-    }
-}
-
-#[actix_web::main]
-async fn main() -> std::io::Result<()> {
-    println!("The server has been started!: http://0.0.0.0:7878\n");
-
-    HttpServer::new(|| {
-        App::new()
-            .route("/", web::get().to(index))
-            .route("/favicon.ico", web::get().to(favicon))
-            .route("/{filename:.*}", web::get().to(public))
-    })
-    .bind(("0.0.0.0", 7878))?
-    .run()
-    .await
+async fn handle_error(_err: std::io::Error) -> impl IntoResponse {
+    (StatusCode::INTERNAL_SERVER_ERROR, "Something went wrong...")
 }

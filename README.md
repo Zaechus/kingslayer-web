@@ -1,3 +1,3 @@
 # kingslayer-web
 
-This is an actix-web server and a GitHub Pages location for the Kingslayer game to be played online.
+A web server and GitHub Pages location for [Kingslayer](https://github.com/Zaechus/kingslayer).
