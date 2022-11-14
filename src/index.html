@@ -14,21 +14,8 @@
 
         <pre><div id="terminal"></div></pre>
         <input type="text" id="term_input" placeholder="Enter commands here">
-        <script type="module">
-            import init, { add } from './kingslayer_wasm.js';
 
-            async function run() {
-                await init();
-
-                // And afterwards we can use all the functionality defined in wasm.
-                const result = add(1, 2);
-                console.log(`1 + 2 = ${result}`);
-                if (result !== 3)
-                  throw new Error("wasm addition doesn't work!");
-            }
-
-            run();
-        </script>
+        <script type="module" src="main.js"></script>
     </main>
 </body>
 </html>

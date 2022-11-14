@@ -1,18 +1,17 @@
 use wasm_bindgen::prelude::*;
 
-// use kingslayer::Game;
+use kingslayer::Game;
 
 #[wasm_bindgen]
-extern "C" {
-    fn alert(s: &str);
+pub fn new_game() -> JsValue {
+    serde_wasm_bindgen::to_value(&Game::default()).unwrap()
 }
 
 #[wasm_bindgen]
-pub fn greet(name: &str) {
-    alert(&format!("Hello, {}!", name));
-}
+pub fn ask(value: JsValue, prompt: &str) -> JsValue {
+    let mut game: Game = serde_wasm_bindgen::from_value(value).unwrap();
 
-#[wasm_bindgen]
-pub fn add(a: i32, b: i32) -> i32 {
-    a + b
+    let output = game.ask(prompt);
+
+    serde_wasm_bindgen::to_value(&(game, output)).unwrap()
 }

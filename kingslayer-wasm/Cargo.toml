@@ -9,6 +9,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 kingslayer = { path = "../../kingslayer" }
+serde-wasm-bindgen = "0.4"
 wasm-bindgen = "0.2"
 
 [profile.release]

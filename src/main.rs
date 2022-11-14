@@ -18,7 +18,7 @@ async fn main() {
 }
 
 async fn index() -> Html<&'static str> {
-    Html(include_str!("../docs/index.html"))
+    Html(include_str!("./index.html"))
 }
 
 async fn handle_error(_err: std::io::Error) -> impl IntoResponse {
