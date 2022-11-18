@@ -5,17 +5,17 @@ async function run() {
 
     let game = new_game();
 
-    let term_input = document.getElementById("term_input");
     let terminal = document.getElementById("terminal");
+    let term_input = document.getElementById("term_input");
 
     term_input.focus();
 
     function show_res(command) {
         let res = ask(game, command)
         game = res[0];
-        terminal.append(res[1] + "\n\n\n");
+        terminal.append(res[1] + "\n\n");
 
-        terminal.scrollTop = terminal.scrollHeight - terminal.clientHeight;
+        terminal.scrollTop = terminal.scrollHeight;
 
         term_input.value = "";
     }
@@ -30,6 +30,13 @@ async function run() {
             }
         },
         false
+    );
+
+    document.addEventListener(
+        "click",
+        function () {
+            term_input.focus()
+        }
     );
 }
 
