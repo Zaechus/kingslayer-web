@@ -1,17 +1,24 @@
 * {
     background-color: black;
     color: white;
+    font-family: monospace, monospace;
+    font-size: 1em;
     margin: 0;
 }
 
-#terminal {
-    max-height: 42em;
-    line-height: 1.5em;
-    overflow: hidden;
-    padding-left: 0.5em;
+::selection {
+    color: none;
+    background: none;
 }
 
 input {
     border: 0;
     outline: none;
+}
+
+#terminal {
+    height: 35em;
+    line-height: 1.5em;
+    overflow: hidden;
+    padding-left: 0.5em;
 }
