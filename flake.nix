@@ -14,6 +14,7 @@
       in ({ pkgs, ... }: pkgs.mkShell {
         buildInputs = with pkgs; [
           cargo
+          clang
           (rust-bin.stable.latest.default.override {
             targets = [ "wasm32-unknown-unknown" ];
           })

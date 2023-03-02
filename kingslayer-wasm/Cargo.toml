@@ -3,6 +3,7 @@ name = "kingslayer-wasm"
 version = "0.1.0"
 authors = ["Maxwell Anderson <zaechus@proton.me>"]
 edition = "2021"
+publish = false
 
 [lib]
 crate-type = ["cdylib"]
@@ -14,4 +15,5 @@ wasm-bindgen = "0.2"
 
 [profile.release]
 opt-level = "s"
+panic = "abort"
 strip = true
