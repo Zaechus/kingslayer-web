@@ -1,11 +1,11 @@
 [package]
 name = "kingslayer-web"
 version = "0.1.0"
-authors = ["Maxwell Anderson <zaechus@proton.me>"]
+authors = ["Maxwell Anderson <zaechus@pm.me>"]
 edition = "2021"
 publish = false
 
 [dependencies]
 axum = "0.6"
-tokio = { version = "1.26", features = ["full"] }
+tokio = { version = "1.27", features = ["full"] }
 tower-http = { version = "0.4", features = ["full"] }
