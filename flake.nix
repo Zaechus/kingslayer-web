@@ -22,13 +22,11 @@
         ];
 
         shellHook = ''
-          cd kingslayer-wasm
-          cargo b -r --target wasm32-unknown-unknown
-          wasm-bindgen --target web target/wasm32-unknown-unknown/release/kingslayer_wasm.wasm --out-dir pkg
-          cp pkg/*.js ../docs
-          cp pkg/*.wasm ../docs
-          cd ..
           cargo b -r
+          wasm-bindgen --target web \
+            --no-typescript \
+            --out-dir docs \
+            kingslayer-wasm/target/wasm32-unknown-unknown/release/kingslayer_wasm.wasm
           exit
         '';
       }) { inherit pkgs; };
