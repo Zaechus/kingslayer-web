@@ -1,0 +1,24 @@
+* {
+    background-color: black;
+    color: white;
+    font-family: monospace, monospace;
+    font-size: 1em;
+    margin: 0;
+}
+
+::selection {
+    background: none;
+}
+
+input {
+    border: 0;
+    outline: none;
+    width: 90%;
+}
+
+#terminal {
+    height: 35em;
+    line-height: 1.5em;
+    overflow: hidden;
+    padding-left: 0.5em;
+}

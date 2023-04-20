@@ -1,9 +1,21 @@
 [package]
 name = "kingslayer-web"
 version = "0.1.0"
-authors = ["Maxwell Anderson <maxwell.brayden.anderson@gmail.com>"]
-edition = "2018"
+authors = ["Maxwell Anderson <zaechus@pm.me>"]
+edition = "2021"
+publish = false
 
 [dependencies]
-actix-web = "3"
-actix-files = "0.5"
+axum = "0.6"
+tokio = { version = "1.27", features = ["full"] }
+tower-http = { version = "0.4", features = ["full"] }
+
+[workspace]
+members = ["kingslayer-wasm"]
+
+[profile.release]
+panic = "abort"
+strip = true
+
+[profile.release.package.kingslayer-wasm]
+opt-level = "s"

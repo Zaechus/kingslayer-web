@@ -1,26 +1,14 @@
 [package]
 name = "kingslayer-wasm"
 version = "0.1.0"
-authors = ["Maxwell Anderson <maxwell.brayden.anderson@gmail.com>"]
-edition = "2018"
-license = "MIT"
+authors = ["Maxwell Anderson <zaechus@pm.me>"]
+edition = "2021"
+publish = false
 
 [lib]
-crate-type = ["cdylib", "rlib"]
-
-[features]
-default = ["console_error_panic_hook"]
+crate-type = ["cdylib"]
 
 [dependencies]
-kingslayer = { path = "../../kingslayer" }
-serde-wasm-bindgen = "0.2"
+kingslayer = "0.5"
+serde-wasm-bindgen = "0.4"
 wasm-bindgen = "0.2"
-
-console_error_panic_hook = { version = "0.1", optional = true }
-wee_alloc = { version = "0.4", optional = true }
-
-[dev-dependencies]
-wasm-bindgen-test = "0.3"
-
-[profile.release]
-opt-level = "s"
