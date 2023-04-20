@@ -13,6 +13,7 @@
 input {
     border: 0;
     outline: none;
+    width: 90%;
 }
 
 #terminal {
